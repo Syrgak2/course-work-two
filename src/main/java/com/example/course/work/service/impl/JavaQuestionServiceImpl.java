@@ -19,12 +19,7 @@ public class JavaQuestionServiceImpl implements QuestionService {
     public Question addQuestion(String question, String answer) {
         Question requestedQuestion = new Question(question, answer);
 
-        if (questions.contains(requestedQuestion)) {
-            throw new QuestionAlreadyAddedException();
-        }
-
-        questions.add(requestedQuestion);
-        return requestedQuestion;
+        return addQuestion(requestedQuestion);
     }
 
     @Override
