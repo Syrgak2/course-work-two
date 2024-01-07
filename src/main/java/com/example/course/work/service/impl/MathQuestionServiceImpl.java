@@ -1,7 +1,5 @@
 package com.example.course.work.service.impl;
 
-import com.example.course.work.exception.QuestionAlreadyAddedException;
-import com.example.course.work.exception.QuestionNotFoundException;
 import com.example.course.work.model.Question;
 import com.example.course.work.repository.QuestionRepository;
 import com.example.course.work.service.QuestionService;
@@ -9,26 +7,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 @Service
-@Qualifier("javaQuestionService")
-public class JavaQuestionServiceImpl implements QuestionService {
-
+@Qualifier("mathQuestionService")
+public class MathQuestionServiceImpl implements QuestionService {
     @Autowired
-    @Qualifier("javaQuestionRepository")
-    QuestionRepository questionRepo;
-
-    @Override
-    public Question addQuestion(Question question) {
-        return questionRepo.add(question);
-    }
+    @Qualifier("mathQuestionRepository")
+    private QuestionRepository questionRepo;
 
     @Override
     public Question addQuestion(String question, String answer) {
         Question requestedQuestion = new Question(question, answer);
 
         return addQuestion(requestedQuestion);
+    }
+
+    @Override
+    public Question addQuestion(Question question) {
+        return questionRepo.add(question);
     }
 
     @Override
@@ -46,5 +45,7 @@ public class JavaQuestionServiceImpl implements QuestionService {
         Random random = new Random();
         int index = random.nextInt(getAll().size());
         return getAll().get(index);
+
     }
+
 }
