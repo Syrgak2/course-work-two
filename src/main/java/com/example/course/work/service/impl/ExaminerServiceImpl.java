@@ -22,8 +22,7 @@ public class ExaminerServiceImpl implements ExaminerService {
     @Qualifier("mathQuestionService")
     private QuestionService mathQuestionService;
 
-    @Autowired
-    private Random random;
+    private Random random = new Random();
 
 
     @Override
