@@ -22,6 +22,9 @@ public class ExaminerServiceImpl implements ExaminerService {
     @Qualifier("mathQuestionService")
     private QuestionService mathQuestionService;
 
+    @Autowired
+    private Random random;
+
 
     @Override
     public List<Question> getQuestions(int amount) {
@@ -30,8 +33,7 @@ public class ExaminerServiceImpl implements ExaminerService {
             throw new IllegalAmountException();
         }
 
-        int index = 0;
-        int javaQuestionSize = getRandomIndex(amount);
+        int javaQuestionSize = random.nextInt(amount);
         int mathQuestionSize = amount - javaQuestionSize;
 
         return getRandomQuestions(amount, javaQuestionSize, javaQuestionService);
@@ -64,10 +66,5 @@ public class ExaminerServiceImpl implements ExaminerService {
             }
         }
         return tmp;
-    }
-
-    private int getRandomIndex(int amount) {
-        Random random = new Random();
-        return random.nextInt(amount);
     }
 }

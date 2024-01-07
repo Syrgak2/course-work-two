@@ -32,7 +32,7 @@ public class MathQuestionRepository implements QuestionRepository {
 
     @Override
     public Question remove(Question question) {
-        if (questions.contains(question)) {
+        if (!questions.contains(question)) {
             throw new QuestionNotFoundException();
         }
         questions.remove(question);

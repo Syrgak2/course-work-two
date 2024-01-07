@@ -5,6 +5,7 @@ import com.example.course.work.repository.QuestionRepository;
 import com.example.course.work.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
