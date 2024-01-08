@@ -14,14 +14,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static com.example.course.work.constants.Constants.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -29,6 +26,9 @@ public class JavaQuestionServiceImplTest {
 
     @Mock
     private JavaQuestionRepository javaQuestionRepository;
+
+    @Mock
+    Random random;
 
     @InjectMocks
     private JavaQuestionServiceImpl javaQuestionService;
@@ -45,7 +45,7 @@ public class JavaQuestionServiceImplTest {
 
 //        Then
 
-        Assertions.assertEquals(QUESTION_OBJ_1, actual);
+        assertEquals(QUESTION_OBJ_1, actual);
     }
 
     @Test
@@ -57,7 +57,7 @@ public class JavaQuestionServiceImplTest {
         Question actual = javaQuestionService.removeQuestion(QUESTION_OBJ_1);
 
 //        Then
-        Assertions.assertEquals(QUESTION_OBJ_1, actual);
+        assertEquals(QUESTION_OBJ_1, actual);
     }
 
     @Test
@@ -70,7 +70,21 @@ public class JavaQuestionServiceImplTest {
         List<Question> actual = javaQuestionService.getAll();
 
 //        Then
-        Assertions.assertEquals(excepted, actual);
+        assertEquals(excepted, actual);
+    }
+
+    @Test
+    public void getRandomQuestion() {
+//        Given
+        when(random.nextInt(anyInt())).thenReturn(0);
+        when(javaQuestionRepository.getAll()).thenReturn(QUESTION_COLLECTION);
+        Question excepted = javaQuestionService.getAll().get(0);
+
+//        When
+        Question actual = javaQuestionService.getRandomQuestion();
+
+//        Then
+        assertEquals(excepted, actual);
     }
 
 }

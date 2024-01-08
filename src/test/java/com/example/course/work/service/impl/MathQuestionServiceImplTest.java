@@ -12,15 +12,21 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static com.example.course.work.constants.Constants.QUESTION_COLLECTION;
 import static com.example.course.work.constants.Constants.QUESTION_OBJ_1;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class MathQuestionServiceImplTest {
     @Mock
     private MathQuestionRepository mathQuestionRepository;
+
+    @Mock
+    Random random;
 
     @InjectMocks
     private MathQuestionServiceImpl mathQuestionService;
@@ -63,5 +69,19 @@ public class MathQuestionServiceImplTest {
 
 //        Then
         Assertions.assertEquals(excepted, actual);
+    }
+
+    @Test
+    public void getRandomQuestion() {
+//        Given
+        when(random.nextInt(anyInt())).thenReturn(0);
+        when(mathQuestionRepository.getAll()).thenReturn(QUESTION_COLLECTION);
+        Question excepted = mathQuestionService.getAll().get(0);
+
+//        When
+        Question actual = mathQuestionService.getRandomQuestion();
+
+//        Then
+        assertEquals(excepted, actual);
     }
 }

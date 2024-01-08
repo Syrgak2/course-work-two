@@ -19,6 +19,8 @@ public class JavaQuestionServiceImpl implements QuestionService {
     @Qualifier("javaQuestionRepository")
     QuestionRepository questionRepo;
 
+    private Random random = new Random();
+
     @Override
     public Question addQuestion(Question question) {
         return questionRepo.add(question);
@@ -43,7 +45,6 @@ public class JavaQuestionServiceImpl implements QuestionService {
 
     @Override
     public Question getRandomQuestion() {
-        Random random = new Random();
         int index = random.nextInt(getAll().size());
         return getAll().get(index);
     }
