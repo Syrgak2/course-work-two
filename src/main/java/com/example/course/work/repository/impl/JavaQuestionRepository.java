@@ -6,7 +6,6 @@ import com.example.course.work.repository.QuestionRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.HashSet;

@@ -1,7 +1,5 @@
 package com.example.course.work.service.impl;
 
-import com.example.course.work.exception.QuestionAlreadyAddedException;
-import com.example.course.work.exception.QuestionNotFoundException;
 import com.example.course.work.model.Question;
 import com.example.course.work.repository.QuestionRepository;
 import com.example.course.work.service.QuestionService;

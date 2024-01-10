@@ -3,7 +3,6 @@ package com.example.course.work.service;
 import com.example.course.work.model.Question;
 
 import java.util.List;
-import java.util.Set;
 
 public interface QuestionService {
     Question addQuestion(String question, String answer);

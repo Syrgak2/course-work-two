@@ -33,13 +33,12 @@ public class ExaminerServiceImpl implements ExaminerService {
         }
 
         int javaQuestionSize = random.nextInt(amount);
-        int mathQuestionSize = amount - javaQuestionSize;
 
-        return getRandomQuestions(amount, javaQuestionSize, javaQuestionService);
+        return getRandomQuestions(amount, javaQuestionSize);
 
     }
 
-    private List<Question> getRandomQuestions(int amount, int size, QuestionService questionsService) {
+    private List<Question> getRandomQuestions(int amount, int size) {
         List<Question> tmp = new ArrayList<>();
         int index = 0;
 
